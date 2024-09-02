@@ -28,6 +28,9 @@ INSTALLED_APPS = [
 
     # apps
     'movies',
+
+    #lib
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
