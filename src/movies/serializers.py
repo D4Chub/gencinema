@@ -38,6 +38,35 @@ class MovieSerializer(serializers.ModelSerializer):
                   'person',
                   'status'
                 ]
+        read_only_fields = ['status']
 
     def get_person(self, obj):
         return PersonSerializer(obj.persons.all(), many=True).data
+        
+
+class MovieGenresSerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(many=True)
+
+    class Meta:
+        model = Movie
+        fields = ['id', 'name', 'genres']
+
+
+class MoviePersonsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = ['id', 'name', 'person']
+
+    def get_person(self, obj):
+        return PersonSerializer(obj.persons.all(), many=True).data
+
+
+class PersonMovieSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Person
+        fields = ['id', 'name', 'movie']
+
+    def get_movie(self, obj):
+        return MovieSerializer(obj.movies.all(), many=True).data
