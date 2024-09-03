@@ -14,6 +14,10 @@ from drf_spectacular.utils import extend_schema, OpenApiParameter
     description="Список фильмов",
 )
 class MovieListView(ListAPIView):
+    """
+    Отображение списка всех(!) фильмов
+    """
+
     model = Movie
     queryset = Movie.objects.filter(status=Movie.Status.PUBLISHED)
     serializer_class = MovieSerializer
@@ -27,39 +31,49 @@ class MovieListView(ListAPIView):
     description="Список всех жанров",
 )
 class GenreListView(ListAPIView):
+    """
+    Отображение списка всех(!) жанров
+    """
+
     model = Genre
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
 
 class PersonListView(ListAPIView):
+    """
+    Отображение списка всех персон (актеры, 
+    режиссеры, сценаристы)
+    """
+
     model = Person
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+
 
 @extend_schema(
     responses=MovieSerializer,
     description="Подробная информация о фильме",
 )
 class MovieDetailView(RetrieveAPIView):
+    """
+    Отображение фильма по id
+    """
+
     model = Movie
     queryset = Movie.objects.filter(status=Movie.Status.PUBLISHED)
     serializer_class = MovieSerializer
 
-@extend_schema(
-    responses=MovieSerializer,
-    description="Жанры фильма",
-)
-class MovieGenresView(RetrieveAPIView):
-    model = Movie
-    queryset = Movie.objects.all()
-    serializer_class = MovieGenresSerializer
 
 @extend_schema(
     responses=MovieSerializer,
     description="Список фильмов по актеру",
 )
 class PersonMovieView(ListAPIView):
+    """
+    Отображение списка фильмов по конкретному актеру
+    """
+
     serializer_class = MovieSerializer
 
     def get_queryset(self):
