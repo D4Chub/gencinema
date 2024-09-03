@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # apps
-    'movies',
+    'apps.movies.apps.MoviesConfig',
 
     #lib
     'rest_framework',
