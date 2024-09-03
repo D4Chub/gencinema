@@ -63,7 +63,8 @@ class MoviePersonsSerializer(serializers.ModelSerializer):
 
 
 class PersonMovieSerializer(serializers.ModelSerializer):
-    
+    movie = serializers.SerializerMethodField()
+
     class Meta:
         model = Person
         fields = ['id', 'name', 'movie']
