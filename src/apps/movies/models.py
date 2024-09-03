@@ -20,7 +20,7 @@ class Movie(models.Model):
     poster = models.ImageField(upload_to="movies/", blank=True, null=True, verbose_name="постер")
     genres = models.ManyToManyField("Genre", verbose_name="жанры")
     premier = models.DateField(verbose_name="премьера")
-    persons = models.ManyToManyField("Person", verbose_name="персоны")
+    persons = models.ManyToManyField("Person", through='PersonMovie', related_name='movies', verbose_name="персоны")
     status = models.CharField(max_length=100, choices=Status.choices, default=Status.DRAFT, verbose_name="статус")
 
     class Meta:
@@ -59,3 +59,9 @@ class Person(models.Model):
     class Meta:
         verbose_name = "персона"
         verbose_name_plural = "персоны"
+
+
+class PersonMovie(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    role = models.CharField(max_length=50, choices=Person.Role.choices)
