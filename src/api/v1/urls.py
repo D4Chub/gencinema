@@ -4,10 +4,8 @@ from api.v1.movies.views import MovieListView, GenreListView, PersonListView, Mo
 
 
 urlpatterns = [
-    path('movies/', MovieListView.as_view()),
-    path('genres/', GenreListView.as_view()),
-    path('persons/', PersonListView.as_view()),
-    path('persons/<int:pk>/movies/', PersonMovieView.as_view()),
-    path('movies/<int:pk>/detail/', MovieDetailView.as_view()),
-    path('movies/<int:pk>/genres/', MovieGenresView.as_view()),
+    path('movie/', MovieListView.as_view(), name="movie_list"),
+    path('genre/', GenreListView.as_view(), name="genre_list"),
+    path('movie/<int:pk>/', MovieDetailView.as_view(), name="movie_detail"),
+    path('actor/<int:actor_id>/movies/', PersonMovieView.as_view(), name="movies_by_actor"),
 ]
