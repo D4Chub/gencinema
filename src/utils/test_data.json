@@ -1,0 +1,104 @@
+[
+    {
+        "model": "movies.movie",
+        "pk": 1,
+        "fields": {
+            "name": "Inception",
+            "enName": "Inception",
+            "description": "A skilled thief is given a chance at redemption if he can successfully perform inception.",
+            "year": 2010,
+            "madeIn": "USA",
+            "ageLimit": 13,
+            "rating": 8.8,
+            "movieLength": 148,
+            "poster": "movies/inception.jpg",
+            "premier": "2010-07-16",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 1,
+        "fields": {
+            "name": "Sci-Fi"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 1,
+        "fields": {
+            "name": "Christopher Nolan",
+            "enName": "Christopher Nolan",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 2,
+        "fields": {
+            "name": "Leonardo DiCaprio",
+            "enName": "Leonardo DiCaprio",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 1,
+        "fields": {
+            "person": 1,
+            "movie": 1,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 2,
+        "fields": {
+            "person": 2,
+            "movie": 1,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 2,
+        "fields": {
+            "name": "The Dark Knight",
+            "enName": "The Dark Knight",
+            "description": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+            "year": 2008,
+            "madeIn": "USA",
+            "ageLimit": 13,
+            "rating": 9.0,
+            "movieLength": 152,
+            "poster": "movies/dark_knight.jpg",
+            "premier": "2008-07-18",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 2,
+        "fields": {
+            "name": "Action"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 3,
+        "fields": {
+            "name": "Heath Ledger",
+            "enName": "Heath Ledger",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 3,
+        "fields": {
+            "person": 3,
+            "movie": 2,
+            "role": "actor"
+        }
+    }
+]
