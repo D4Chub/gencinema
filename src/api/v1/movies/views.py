@@ -1,19 +1,22 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
+from rest_framework import viewsets, mixins
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.parsers import MultiPartParser
 
 from .serializers import MovieSerializer, GenreSerializer, PersonSerializer
 from apps.movies.models import Movie, Genre, Person
-
 from drf_spectacular.utils import extend_schema
 
 
-@extend_schema(
-    responses=MovieSerializer,
-    description="Список фильмов",
-)
-class MovieListView(ListAPIView):
+class MovieViewSet(
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet):
     """
     Отображение списка всех(!) фильмов
     """
@@ -21,10 +24,8 @@ class MovieListView(ListAPIView):
     model = Movie
     queryset = Movie.objects.filter(status=Movie.Status.PUBLISHED)
     serializer_class = MovieSerializer
+    parser_classes = [MultiPartParser]
 
-
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        return super().get(request, *args, **kwargs)
 
 @extend_schema(
     responses=GenreSerializer,
@@ -40,7 +41,11 @@ class GenreListView(ListAPIView):
     serializer_class = GenreSerializer
 
 
-class PersonListView(ListAPIView):
+class PersonViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet):
     """
     Отображение списка всех персон (актеры, 
     режиссеры, сценаристы)
@@ -49,6 +54,7 @@ class PersonListView(ListAPIView):
     model = Person
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    parser_classes = [MultiPartParser]
 
 
 @extend_schema(

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_spectacular.utils import inline_serializer
 
 from apps.movies.models import Movie, Person, Genre
 
