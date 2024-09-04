@@ -3,10 +3,10 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
 
-from .serializers import MovieGenresSerializer, MovieSerializer, GenreSerializer, PersonMovieSerializer, PersonSerializer
+from .serializers import MovieSerializer, GenreSerializer, PersonSerializer
 from apps.movies.models import Movie, Genre, Person
 
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema
 
 
 @extend_schema(
