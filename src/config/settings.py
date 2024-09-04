@@ -125,8 +125,11 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'GenCinema API',
-    'DESCRIPTION': 'Онлайн кинотеатр',
+    'DESCRIPTION': 'API for GenCinema',
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
-    # другие настройки
+    'SERVE_PERMISSIONS': [],
+    'SERVE_AUTHENTICATION': [],
+    'COMPONENT_SPLIT_REQUEST': True,
+    'ENUM_NAME_OVERRIDES': {},
+    'POSTPROCESSING_HOOKS': [],
 }
