@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from drf_spectacular.utils import inline_serializer
 
 from apps.movies.models import Movie, Person, Genre
 
@@ -15,34 +14,36 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = ['id', 'name']
 
-    def to_representation(self, obj):
-        return obj.name
 
 class MovieSerializer(serializers.ModelSerializer):
-    person = serializers.SerializerMethodField()
-    genres = GenreSerializer(many=True)
+    persons= serializers.SerializerMethodField()
+    genres = serializers.SerializerMethodField()
 
     class Meta:
         model = Movie
-        fields = ['id',
-                  'name',
-                  'enName',
-                  'description',
-                  'year',
-                  'madeIn',
-                  'ageLimit',
-                  'rating',
-                  'movieLength',
-                  'poster',
-                  'premier',
-                  'genres',
-                  'person',
-                  'status'
-                ]
+        fields = [
+            'id', 
+            'name',
+            'enName',
+            'description',
+            'year',
+            'madeIn',
+            'ageLimit',
+            'rating',
+            'movieLength',
+            'poster',
+            'premier',
+            'genres',
+            'persons',
+            'status'
+            ]
         read_only_fields = ['status']
 
-    def get_person(self, obj):
+    def get_persons(self, obj):
         return PersonSerializer(obj.persons.all(), many=True).data
+    
+    def get_genres(self, obj):
+        return GenreSerializer(obj.genres.all(), many=True).data
         
 
 class MoviePersonsSerializer(serializers.ModelSerializer):
