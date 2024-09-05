@@ -1,46 +1,82 @@
 from typing import Any
-from django.http import HttpRequest, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import viewsets, mixins
+from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
+from rest_framework.parsers import MultiPartParser
 
-from .serializers import MovieGenresSerializer, MovieSerializer, GenreSerializer, PersonMovieSerializer, PersonSerializer
+from .serializers import MovieSerializer, GenreSerializer, PersonSerializer
 from apps.movies.models import Movie, Genre, Person
+from drf_spectacular.utils import extend_schema
 
-class MovieListView(ListAPIView):
+
+class MovieViewSet(
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    viewsets.GenericViewSet):
+    """
+    Отображение списка всех(!) фильмов
+    """
+
     model = Movie
     queryset = Movie.objects.filter(status=Movie.Status.PUBLISHED)
     serializer_class = MovieSerializer
 
 
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        return super().get(request, *args, **kwargs)
-
-
+@extend_schema(
+    responses=GenreSerializer,
+    description="Список всех жанров",
+)
 class GenreListView(ListAPIView):
+    """
+    Отображение списка всех(!) жанров
+    """
+
     model = Genre
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
 
-class PersonListView(ListAPIView):
+class PersonListView(ListCreateAPIView):
+    """
+    Отображение списка всех персон (актеры, 
+    режиссеры, сценаристы)
+    """
+
     model = Person
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    parser_classes = [MultiPartParser]
 
 
+@extend_schema(
+    responses=MovieSerializer,
+    description="Подробная информация о фильме",
+)
 class MovieDetailView(RetrieveAPIView):
+    """
+    Отображение фильма по id
+    """
+
     model = Movie
     queryset = Movie.objects.filter(status=Movie.Status.PUBLISHED)
     serializer_class = MovieSerializer
 
 
-class MovieGenresView(RetrieveAPIView):
-    model = Movie
-    queryset = Movie.objects.all()
-    serializer_class = MovieGenresSerializer
+@extend_schema(
+    responses=MovieSerializer,
+    description="Список фильмов по актеру",
+)
+class PersonMovieView(ListAPIView):
+    """
+    Отображение списка фильмов по конкретному актеру
+    """
 
+    serializer_class = MovieSerializer
 
-class PersonMovieView(RetrieveAPIView):
-    model = Person
-    queryset = Person.objects.all()
-    serializer_class = PersonMovieSerializer
+    def get_queryset(self):
+        try:
+            actor_id = self.kwargs.get('actor_id')
+            return Movie.objects.filter(personmovie__person_id=actor_id, personmovie__role=Person.Role.ACTOR)
+        except ValueError:
+            return JsonResponse({"message": "Actor id is not valid"}, status=400)

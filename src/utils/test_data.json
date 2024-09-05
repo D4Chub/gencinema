@@ -1,0 +1,404 @@
+[
+    {
+        "model": "movies.movie",
+        "pk": 1,
+        "fields": {
+            "name": "Inception",
+            "enName": "Inception",
+            "description": "A skilled thief is given a chance at redemption if he can successfully perform inception.",
+            "year": 2010,
+            "madeIn": "USA",
+            "ageLimit": 13,
+            "rating": 8.8,
+            "movieLength": 148,
+            "poster": "movies/inception.jpg",
+            "premier": "2010-07-16",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 1,
+        "fields": {
+            "name": "Sci-Fi"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 1,
+        "fields": {
+            "name": "Christopher Nolan",
+            "enName": "Christopher Nolan",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 2,
+        "fields": {
+            "name": "Leonardo DiCaprio",
+            "enName": "Leonardo DiCaprio",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 1,
+        "fields": {
+            "person": 1,
+            "movie": 1,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 2,
+        "fields": {
+            "person": 2,
+            "movie": 1,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 2,
+        "fields": {
+            "name": "The Dark Knight",
+            "enName": "The Dark Knight",
+            "description": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+            "year": 2008,
+            "madeIn": "USA",
+            "ageLimit": 13,
+            "rating": 9.0,
+            "movieLength": 152,
+            "poster": "movies/dark_knight.jpg",
+            "premier": "2008-07-18",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 2,
+        "fields": {
+            "name": "Action"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 3,
+        "fields": {
+            "name": "Heath Ledger",
+            "enName": "Heath Ledger",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 3,
+        "fields": {
+            "person": 3,
+            "movie": 2,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 1,
+        "fields": {
+            "name": "Interstellar",
+            "enName": "Interstellar",
+            "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+            "year": 2014,
+            "madeIn": "USA",
+            "ageLimit": 13,
+            "rating": 8.6,
+            "movieLength": 169,
+            "poster": "movies/interstellar.jpg",
+            "premier": "2014-11-07",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 1,
+        "fields": {
+            "name": "Sci-Fi"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 1,
+        "fields": {
+            "name": "Christopher Nolan",
+            "enName": "Christopher Nolan",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 2,
+        "fields": {
+            "name": "Matthew McConaughey",
+            "enName": "Matthew McConaughey",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 1,
+        "fields": {
+            "person": 1,
+            "movie": 1,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 2,
+        "fields": {
+            "person": 2,
+            "movie": 1,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 2,
+        "fields": {
+            "name": "The Godfather",
+            "enName": "The Godfather",
+            "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+            "year": 1972,
+            "madeIn": "USA",
+            "ageLimit": 17,
+            "rating": 9.2,
+            "movieLength": 175,
+            "poster": "movies/godfather.jpg",
+            "premier": "1972-03-24",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 2,
+        "fields": {
+            "name": "Crime"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 3,
+        "fields": {
+            "name": "Francis Ford Coppola",
+            "enName": "Francis Ford Coppola",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 4,
+        "fields": {
+            "name": "Marlon Brando",
+            "enName": "Marlon Brando",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 3,
+        "fields": {
+            "person": 3,
+            "movie": 2,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 4,
+        "fields": {
+            "person": 4,
+            "movie": 2,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 3,
+        "fields": {
+            "name": "Pulp Fiction",
+            "enName": "Pulp Fiction",
+            "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+            "year": 1994,
+            "madeIn": "USA",
+            "ageLimit": 18,
+            "rating": 8.9,
+            "movieLength": 154,
+            "poster": "movies/pulp_fiction.jpg",
+            "premier": "1994-10-14",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 3,
+        "fields": {
+            "name": "Drama"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 5,
+        "fields": {
+            "name": "Quentin Tarantino",
+            "enName": "Quentin Tarantino",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 6,
+        "fields": {
+            "name": "John Travolta",
+            "enName": "John Travolta",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 5,
+        "fields": {
+            "person": 5,
+            "movie": 3,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 6,
+        "fields": {
+            "person": 6,
+            "movie": 3,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 4,
+        "fields": {
+            "name": "The Matrix",
+            "enName": "The Matrix",
+            "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+            "year": 1999,
+            "madeIn": "USA",
+            "ageLimit": 16,
+            "rating": 8.7,
+            "movieLength": 136,
+            "poster": "movies/matrix.jpg",
+            "premier": "1999-03-31",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 4,
+        "fields": {
+            "name": "Sci-Fi"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 7,
+        "fields": {
+            "name": "Lana Wachowski",
+            "enName": "Lana Wachowski",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 8,
+        "fields": {
+            "name": "Keanu Reeves",
+            "enName": "Keanu Reeves",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 7,
+        "fields": {
+            "person": 7,
+            "movie": 4,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 8,
+        "fields": {
+            "person": 8,
+            "movie": 4,
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.movie",
+        "pk": 5,
+        "fields": {
+            "name": "Fight Club",
+            "enName": "Fight Club",
+            "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.",
+            "year": 1999,
+            "madeIn": "USA",
+            "ageLimit": 18,
+            "rating": 8.8,
+            "movieLength": 139,
+            "poster": "movies/fight_club.jpg",
+            "premier": "1999-10-15",
+            "status": "published"
+        }
+    },
+    {
+        "model": "movies.genre",
+        "pk": 5,
+        "fields": {
+            "name": "Drama"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 9,
+        "fields": {
+            "name": "David Fincher",
+            "enName": "David Fincher",
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.person",
+        "pk": 10,
+        "fields": {
+            "name": "Brad Pitt",
+            "enName": "Brad Pitt",
+            "role": "actor"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 9,
+        "fields": {
+            "person": 9,
+            "movie": 5,
+            "role": "director"
+        }
+    },
+    {
+        "model": "movies.personmovie",
+        "pk": 10,
+        "fields": {
+            "person": 10,
+            "movie": 5,
+            "role": "actor"
+        }
+    }
+]
