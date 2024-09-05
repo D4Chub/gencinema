@@ -1,8 +1,8 @@
 from typing import Any
-from django.http import HttpRequest, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import viewsets, mixins
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework.parsers import MultiPartParser
 
 from .serializers import MovieSerializer, GenreSerializer, PersonSerializer
@@ -14,8 +14,6 @@ class MovieViewSet(
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
     viewsets.GenericViewSet):
     """
     Отображение списка всех(!) фильмов
@@ -41,11 +39,7 @@ class GenreListView(ListAPIView):
     serializer_class = GenreSerializer
 
 
-class PersonViewSet(
-    mixins.RetrieveModelMixin,
-    mixins.UpdateModelMixin,
-    mixins.DestroyModelMixin,
-    viewsets.GenericViewSet):
+class PersonListView(RetrieveAPIView, CreateAPIView):
     """
     Отображение списка всех персон (актеры, 
     режиссеры, сценаристы)
@@ -83,5 +77,8 @@ class PersonMovieView(ListAPIView):
     serializer_class = MovieSerializer
 
     def get_queryset(self):
-        actor_id = self.kwargs.get('actor_id')
-        return Movie.objects.filter(personmovie__person_id=actor_id, personmovie__role=Person.Role.ACTOR)
+        try:
+            actor_id = self.kwargs.get('actor_id')
+            return Movie.objects.filter(personmovie__person_id=actor_id, personmovie__role=Person.Role.ACTOR)
+        except ValueError:
+            return JsonResponse({"message": "Actor id is not valid"}, status=400)
