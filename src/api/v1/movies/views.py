@@ -2,7 +2,7 @@ from typing import Any
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import viewsets, mixins
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView
 from rest_framework.parsers import MultiPartParser
 
 from .serializers import MovieSerializer, GenreSerializer, PersonSerializer
@@ -13,7 +13,6 @@ from drf_spectacular.utils import extend_schema
 class MovieViewSet(
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
-    mixins.CreateModelMixin,
     viewsets.GenericViewSet):
     """
     Отображение списка всех(!) фильмов
@@ -22,7 +21,6 @@ class MovieViewSet(
     model = Movie
     queryset = Movie.objects.filter(status=Movie.Status.PUBLISHED)
     serializer_class = MovieSerializer
-    parser_classes = [MultiPartParser]
 
 
 @extend_schema(
@@ -39,7 +37,7 @@ class GenreListView(ListAPIView):
     serializer_class = GenreSerializer
 
 
-class PersonListView(RetrieveAPIView, CreateAPIView):
+class PersonListView(ListCreateAPIView):
     """
     Отображение списка всех персон (актеры, 
     режиссеры, сценаристы)
